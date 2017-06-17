@@ -38,6 +38,7 @@ body {
 }
 
 .app-wrap {
+     position: relative;
   width: 750px;
   background-color: #fcfcfc;
   border-radius: 5px;
@@ -106,7 +107,7 @@ body {
 }
 
 .wallet-content-wrap .card-number p {
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   margin-bottom: 0;
 }
 
@@ -160,6 +161,19 @@ body {
 
 .transaction-list-wrap {
   padding-top: 25px;
+     position: relative;
+}
+
+.add-transaction-wrap {
+     position: absolute;
+     right: 0;
+     top: 10px;
+}
+
+.add-transaction-wrap a {
+     cursor: pointer;
+     color: #C6CCE2;
+     font-size: 18px;
 }
 
 .transaction-item-wrap {
@@ -215,4 +229,70 @@ body {
 .plus span {
   color: #7CD256;
   font-weight: bold;
+}
+
+/**
+* Card Adding Modal
+*/
+
+.wallet-creation-modal {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: rgba(0,0,0, .8);
+     z-index: 999;
+     display: none;
+     opacity: 0;
+     visibility: hidden;
+     padding: 15px;
+     border-radius: 5px;
+}
+
+.wallet-creation-modal--show {
+     display: flex;
+     opacity: 1;
+     visibility: visible;
+}
+
+.wallet-creation-form-wrap {
+     background-color: #fcfcfc;
+     width: 100%;
+     border-radius: 5px;
+}
+
+.wallet-creation {
+     display: table;
+     margin: auto;
+     text-align: center;
+     width: 300px;
+     max-width: 300px;
+     padding-top: 35px;
+}
+
+.wallet-creation label {
+     display: block;
+     font-weight: bold;
+     color: #828693;
+     margin-top: 20px;
+}
+
+.wallet-creation input {
+     display: block;
+     margin: 10px 0;
+     width: 90%;
+     padding: 8px 12px;
+     border-radius: 5px;
+     border: 1px solid #ddd;
+}
+
+.wallet-creation .submit-btn {
+     display: table;
+     background-color: #A1ADD6;
+     color: #fff;
+     padding: 8px 25px;
+     margin: 20px auto 0 auto;
+     cursor: pointer;
+     border-radius: 5px;
 }

@@ -4,9 +4,9 @@
 * Wallet contstructor holds array of cards
 * @contstructor
 */
-function Wallet(template) {
+function Wallet() {
      this.cards = [];
-     this.template = template;
+     this.template = new WalletTemplate();
      this.$walletList = document.getElementById('wallet');
 }
 

@@ -12,10 +12,25 @@
     <div class="page-wrap">
       <div class="container">
         <div class="app-wrap">
+          <div class="wallet-creation-modal" id="walletCreate">
+               <div class="wallet-creation-form-wrap">
+                    <form class="wallet-creation">
+                         <label for="cardType">Card Type</label>
+                              <input id="cardType" type="text" placeholder="Visa"/>
+                         <label for="cardNumber">Card Number</label>
+                              <input id="cardNumber" type="text" placeholder="****-****-****-****"/>
+                         <label for="cardDate">Card Date</label>
+                              <input type="date" id="cardDate">
+                         <label for="cardAmount">Card Amount</label>
+                              <input id="cardAmount" type="text" placeholder="300"/>
+                         <a id="submit" class="submit-btn">Submit</a>
+                    </form>
+               </div>
+          </div>
           <div class="wallet-wrap">
             <div class="wallet-head-wrap">
               <h3>
-                My Wallets <a><i class="fa fa-plus" aria-hidden="true"></i></a>
+                My Wallets <a id="addCard"><i class="fa fa-plus" aria-hidden="true"></i></a>
               </h3>
             </div>
             <div class="wallet-content-wrap" id="wallet">
@@ -36,7 +51,9 @@
               </div>
             </div>
             <div class="transaction-list-wrap" id="transactList">
-
+               <div class="add-transaction-wrap">
+                    <a id="addTransaction"><i class="fa fa-plus" aria-hidden="true"></i></a>
+               </div>
             </div>
           </div>
         </div>
