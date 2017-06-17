@@ -43,10 +43,9 @@
       * @param {object} transaction - The transaction that was made in order to change the activeBalance state.
       */
       Card.prototype.changeBalance = function(transaction) {
-
-          (this.getTransactionType(transaction)) ? this.add(transaction) : (transaction.amount > this.activeBalance) ? this.subtractOverdraft(transaction) : this.subtract(transaction);
-
-          this.displayBalance();
+          if (transaction) {
+               (this.getTransactionType(transaction)) ? this.add(transaction) : (transaction.amount > this.activeBalance) ? this.subtractOverdraft(transaction) : this.subtract(transaction);
+          }
     }
 
     /**
@@ -84,10 +83,11 @@
           if (!this.getExpired()) {
                alert('Your card is expired!');
 
-               this.changeBalance();
+               return;
           } else {
                this.transactions.push(transaction);
 
+               console.log(transaction);
                this.changeBalance(transaction);
           }
 
@@ -98,13 +98,15 @@
       * Expiration date getter.
       */
     Card.prototype.getExpired = function() {
-         return (this.expirationDate > this.date) ? true : false;
+         return (this.expirationDate >= this.date) ? true : false;
     }
 
     /**
      * Returns the type of transaction.
      */
      Card.prototype.getTransactionType = function(obj) {
+          console.log(obj);
+
           return obj.transactionType;
      }
 

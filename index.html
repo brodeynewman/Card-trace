@@ -14,6 +14,9 @@
         <div class="app-wrap">
           <div class="wallet-creation-modal" id="walletCreate">
                <div class="wallet-creation-form-wrap">
+                    <div class="close-box">
+                         <a id="closeCardForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
                     <form class="wallet-creation">
                          <label for="cardType">Card Type</label>
                               <input id="cardType" type="text" placeholder="Visa"/>
@@ -23,7 +26,31 @@
                               <input type="date" id="cardDate">
                          <label for="cardAmount">Card Amount</label>
                               <input id="cardAmount" type="text" placeholder="300"/>
-                         <a id="submit" class="submit-btn">Submit</a>
+                         <a id="cardSubmit" class="submit-btn">Submit</a>
+                    </form>
+               </div>
+          </div>
+
+          <div class="transaction-creation-modal" id="transactionCreate">
+               <div class="transaction-creation-form-wrap">
+                    <div class="close-box">
+                         <a id="closeTransactionForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
+                    <form class="transaction-creation">
+                         <label for="transactionType">Transaction Type</label>
+                         <select id="transactionType" class="wallet-type-select">
+                              <option value="true">Addition</option>
+                              <option value="false">Subtraction</option>
+                         </select>
+                         <label for="transactionName">Transaction Name</label>
+                              <input id="transactionName" type="text" placeholder="BlueTone Media"/>
+                         <label for="transactionDate">Transaction Date</label>
+                              <input type="date" id="transactionDate">
+                         <label for="transactionAmount">Transaction Amount</label>
+                              <input id="transactionAmount" type="text" placeholder="$300"/>
+                         <label for="transactionDescription">Transaction Description</label>
+                              <input type="type" id="transactionDescription" placeholder="Salary Payment">
+                         <a id="transactionSubmit" class="submit-btn">Submit</a>
                     </form>
                </div>
           </div>

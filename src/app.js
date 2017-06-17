@@ -14,17 +14,25 @@ const wallet = new Wallet();
 // brodeyVisa.addTransaction(brodeyTransactionTestTwo);
 
 
+
+function pushTransaction(data, transaction) {
+     wallet.pushTransaction(data, transaction);
+}
+
 (function() {
-     let create = document.getElementById('walletCreate');
+     let createCard = document.getElementById('walletCreate');
+     let createTransaction = document.getElementById('transactionCreate');
+     let cardArr = document.getElementsByClassName('card');
+
      document.getElementById('cardDate').value = '06/18/2017';
 
      document.getElementById('addCard').addEventListener('click', function() {
-          if (!create.classList.contains('wallet-creation-modal--show')) {
-               create.className += ' wallet-creation-modal--show';
+          if (!createCard.classList.contains('wallet-creation-modal--show')) {
+               createCard.className += ' wallet-creation-modal--show';
           }
      });
 
-     document.getElementById('submit').addEventListener('click', function(e) {
+     document.getElementById('cardSubmit').addEventListener('click', function(e) {
           let type = document.getElementById('cardType').value;
           let number = document.getElementById('cardNumber').value;
           let amount = document.getElementById('cardAmount').value;
@@ -33,7 +41,50 @@ const wallet = new Wallet();
 
           let card = new Card(type, number, newDate, amount);
           wallet.addCard(card)
-          create.className = 'wallet-creation-modal';
+          createCard.className = 'wallet-creation-modal';
 
      });
+
+     document.getElementById('closeCardForm').addEventListener('click', function() {
+          if (createCard.classList.contains('wallet-creation-modal--show')) {
+               createCard.className = ' wallet-creation-modal';
+          }
+     });
+
+     document.getElementById('addTransaction').addEventListener('click', function() {
+          if (createTransaction.classList.contains('transaction-creation-modal')) {
+               createTransaction.className += ' transaction-creation-modal--show';
+          }
+     });
+
+     document.getElementById('closeTransactionForm').addEventListener('click', function() {
+          if (createTransaction.classList.contains('transaction-creation-modal--show')) {
+               createTransaction.className = ' transaction-creation-modal';
+          }
+     });
+
+     document.getElementById('transactionSubmit').addEventListener('click', function(e) {
+          let transactionType = document.getElementById('transactionType').value;
+          let transactionName = document.getElementById('transactionName').value;
+          let transactionDate = document.getElementById('transactionDate').value;
+          let transactionAmount = document.getElementById('transactionAmount').value;
+          let transactionDescription = document.getElementById('transactionDescription').value;
+          let index = document.getElementsByClassName('selected-card')[0].getAttribute('data-target');
+
+          let obj = {
+               transactionType: transactionType,
+               transactionName: transactionName,
+               transactionDate: transactionDate,
+               transactionAmount: transactionAmount,
+               transactionDescription: transactionDescription,
+               transactionCode: Math.floor(Math.random() * 100000)
+          }
+
+          console.log(obj);
+
+          wallet.pushTransaction(index, obj);
+
+          createTransaction.className = 'transaction-creation-modal';
+     });
+
 })()

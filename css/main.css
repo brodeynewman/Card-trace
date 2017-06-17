@@ -89,6 +89,7 @@ body {
 }
 
 .wallet-content-wrap .card {
+     position: relative;
   height: 100px;
   max-width: 213px;
   background-color: #fff;
@@ -97,6 +98,26 @@ body {
   padding: 13px 11px;
   cursor: pointer;
   margin: 10px 0;
+}
+
+.wallet-content-wrap .card:hover .delete-card {
+     opacity: 1;
+     visibility: visible;
+}
+
+.wallet-content-wrap .card .delete-card {
+     position: absolute;
+     right: 8px;
+     top: 5px;
+     color: #C6CCE2;
+     opacity: 0;
+     visibility: hidden;
+     -webkit-transition: all .1s;
+     transition: all .1s;
+}
+
+.wallet-content-wrap .delete-card:hover {
+     color: firebrick;
 }
 
 .wallet-content-wrap .card .credit-card {
@@ -257,6 +278,7 @@ body {
 }
 
 .wallet-creation-form-wrap {
+     position: relative;
      background-color: #fcfcfc;
      width: 100%;
      border-radius: 5px;
@@ -295,4 +317,95 @@ body {
      margin: 20px auto 0 auto;
      cursor: pointer;
      border-radius: 5px;
+}
+
+.close-box {
+     position: absolute;
+     top: 15px;
+     right: 15px;
+}
+
+.close-box a {
+     color: #C6CCE2;
+     cursor: pointer;
+     font-size: 20px;
+}
+
+/**
+* Transaction Adding Modal
+*/
+
+.transaction-creation-modal {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: rgba(0,0,0, .8);
+     z-index: 999;
+     display: none;
+     opacity: 0;
+     visibility: hidden;
+     padding: 15px;
+     border-radius: 5px;
+}
+
+.transaction-creation-modal--show {
+     display: flex;
+     opacity: 1;
+     visibility: visible;
+}
+
+.transaction-creation-form-wrap {
+     position: relative;
+     background-color: #fcfcfc;
+     width: 100%;
+     border-radius: 5px;
+}
+
+.transaction-creation {
+     display: table;
+     margin: auto;
+     text-align: center;
+     width: 300px;
+     max-width: 300px;
+     padding-top: 0px;
+}
+
+.transaction-creation label {
+     display: block;
+     font-weight: bold;
+     color: #828693;
+     margin-top: 20px;
+}
+
+.transaction-creation input {
+     display: block;
+     margin: 10px 0;
+     width: 90%;
+     padding: 8px 12px;
+     border-radius: 5px;
+     border: 1px solid #ddd;
+}
+
+.transaction-creation .submit-btn {
+     display: table;
+     background-color: #A1ADD6;
+     color: #fff;
+     padding: 8px 25px;
+     margin: 20px auto 0 auto;
+     cursor: pointer;
+     border-radius: 5px;
+}
+
+.close-box {
+     position: absolute;
+     top: 15px;
+     right: 15px;
+}
+
+.close-box a {
+     color: #C6CCE2;
+     cursor: pointer;
+     font-size: 20px;
 }

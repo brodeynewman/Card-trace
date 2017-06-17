@@ -40,9 +40,9 @@ TransactionTemplate.prototype.render = function(arr) {
           template = template.replace('{{transactionType}}', type);
           template = template.replace('{{transactionName}}', obj.transactionName);
           template = template.replace('{{transactionDescription}}', obj.transactionDescription);
-          template = template.replace('{{transactionCode}}', obj.code);
+          template = template.replace('{{transactionCode}}', obj.transactionCode);
           template = template.replace('{{transactionDate}}', obj.transactionDate);
-          template = template.replace('{{transactionCost}}', obj.amount);
+          template = template.replace('{{transactionCost}}', obj.transactionAmount);
           template = template.replace('{{damage}}', type);
 
           view += template;
