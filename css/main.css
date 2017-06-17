@@ -207,7 +207,12 @@ body {
   flex-basis: 85px;
 }
 
-.transaction-cost span {
+.minus span {
   color: #A1ADD6;
+  font-weight: bold;
+}
+
+.plus span {
+  color: #7CD256;
   font-weight: bold;
 }
