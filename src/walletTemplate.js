@@ -41,7 +41,7 @@ WalletTemplate.prototype.render = function(arr, id) {
 
           template = template.replace('{{index}}', id);
           template = template.replace('{{cardType}}', obj.cardType);
-          template = template.replace('{{cardNumber}}', obj.cardNumber);
+          template = template.replace('{{cardNumber}}', obj.hashedNum);
           template = template.replace('{{expirationDate}}', obj.shownDate);
 
           view += template;

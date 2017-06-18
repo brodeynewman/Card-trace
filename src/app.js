@@ -5,6 +5,7 @@ const wallet = new Wallet();
      let createTransaction = document.getElementById('transactionCreate');
      let cardArr = document.getElementsByClassName('card');
      let re = /^-?\d*\.?\d*$/;
+     let cardRe = /^\d{4}-?\d{4}-?\d{4}-?\d{4}$/;
 
      document.getElementById('cardDate').value = '06/18/2017';
 
@@ -31,8 +32,10 @@ const wallet = new Wallet();
           if (number.length < 1 || newDate.includes('undefined')) {
                alert('Error: Missing information.');
           } else {
-               if (amount.match(re) && number.match(re)) {
-                    let card = new Card(type, number, newDate, Number(amount));
+               if (amount.match(re) && number.match(cardRe)) {
+                    let hashed = number.replace(/.(?=.{4,}$)/g, '*');
+
+                    let card = new Card(type, number, newDate, Number(amount), hashed);
                     wallet.addCard(card);
 
                     /** Close modal. */
@@ -97,5 +100,4 @@ const wallet = new Wallet();
                }
           }
      });
-
 })()

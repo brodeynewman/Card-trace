@@ -8,7 +8,7 @@
 * @param {date} expirationDate - Holds the card expirationDate
 * @param {number} amount - Holds inital card amount.
 */
-function Card(cardType, cardNumber, expirationDate, amount) {
+function Card(cardType, cardNumber, expirationDate, amount, hashedNum) {
      let expire = expirationDate.split('/');
 
      /** The date for card / transaction comparison. */
@@ -18,6 +18,7 @@ function Card(cardType, cardNumber, expirationDate, amount) {
 
      this.template = new TransactionTemplate();
      this.cardType = cardType;
+     this.hashedNum = hashedNum;
      this.cardNumber = cardNumber;
      this.activeBalance = amount;
      this.transactions = [];
