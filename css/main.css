@@ -77,7 +77,7 @@ header .header-box a {
      background-color: #F2F2F2;
      border-top-left-radius: 5px;
      border-bottom-left-radius: 5px;
-     padding: 20px 35px 0 35px;
+     padding: 20px 30px 0 30px;
      color: #828693;
      height: 550px;
      overflow-y: auto;
@@ -127,7 +127,7 @@ header .header-box a {
 }
 
 .wallet-content-wrap .card-number p {
-     letter-spacing: 1px;
+     letter-spacing: .5px;
      margin-bottom: 0;
 }
 
