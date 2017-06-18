@@ -1,4 +1,5 @@
-const wallet = new Wallet();
+/** Had to use 'var' because of safari bug saying 'Can't create duplicate variable that shadows a global property'. */
+var wallet = new Wallet();
 
 (function() {
      let createCard = document.getElementById('walletCreate');
@@ -6,8 +7,6 @@ const wallet = new Wallet();
      let cardArr = document.getElementsByClassName('card');
      let re = /^-?\d*\.?\d*$/;
      let cardRe = /^\d{4}-?\d{4}-?\d{4}-?\d{4}$/;
-
-     document.getElementById('cardDate').value = '06/18/2017';
 
      /**
      * Adds click listener to add card icon.
@@ -25,25 +24,25 @@ const wallet = new Wallet();
           let type = document.getElementById('cardType').value;
           let number = document.getElementById('cardNumber').value;
           let amount = document.getElementById('cardAmount').value;
-          let date = document.getElementById('cardDate').value.split('-');
-          let newDate = `${date[1]}/${date[2]}/${date[0]}`;
+          let date = document.getElementById('cardDate').value.split('/');
+          let newDate = `${date[0]}/${date[1]}/${date[2]}`;
 
           /** Basic form validation. */
           if (number.length < 1 || newDate.includes('undefined')) {
-               alert('Error: Missing information.');
-          } else {
-               if (amount.match(re) && number.match(cardRe)) {
-                    let hashed = number.replace(/.(?=.{4,}$)/g, '*');
+                alert('Error: Missing information.');
+           } else {
+                if (amount.match(re) && number.match(cardRe)) {
+                     let hashed = number.replace(/.(?=.{4,}$)/g, '*');
 
-                    let card = new Card(type, number, newDate, Number(amount), hashed);
-                    wallet.addCard(card);
+                     let card = new Card(type, number, newDate, Number(amount), hashed);
+                     wallet.addCard(card);
 
                     /** Close modal. */
                     createCard.className = 'wallet-creation-modal';
-               } else {
-                    alert('Enter a valid amount!');
-               }
-          }
+                } else {
+                     alert('Enter a valid amount!');
+                }
+           }
      });
 
      /**
@@ -70,16 +69,16 @@ const wallet = new Wallet();
      document.getElementById('transactionSubmit').addEventListener('click', function(e) {
           let transactionType = document.getElementById('transactionType').value;
           let transactionName = document.getElementById('transactionName').value;
-          let transactionDate = document.getElementById('transactionDate').value;
+          let transactionDate = new Date().toString().split(' ');
           let transactionAmount = document.getElementById('transactionAmount').value.replace(/[!@#$%^&*]/g, "");
           let transactionDescription = document.getElementById('transactionDescription').value;
           let index = document.getElementsByClassName('selected-card')[0].getAttribute('data-target');
-          console.log(transactionAmount);
+          let preferredDate = `${transactionDate[1]} ${transactionDate[2]} ${transactionDate[3]}`
 
           let obj = {
                transactionType: transactionType,
                transactionName: transactionName,
-               transactionDate: transactionDate,
+               transactionDate: preferredDate,
                transactionAmount: Number(transactionAmount),
                transactionDescription: transactionDescription,
                transactionCode: Math.floor(Math.random() * 100000),
@@ -87,7 +86,7 @@ const wallet = new Wallet();
           }
 
           /** Basic form validation. */
-          if (transactionName === '' || transactionDate === '') {
+          if (transactionName === '') {
                alert('Error: Missing information.');
           } else {
                if (transactionAmount.match(re)) {
