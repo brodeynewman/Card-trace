@@ -1,114 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Finance Tracker</title>
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Finance Tracker</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Khula:400,600" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body>
-    <header>
-          <div class="header-box">
-               <h3>
-                    A creation by <a href="http://brodeynewman.com" target="_blank">Brodey Newman.</a>
-               </h3>
-               <p>
-                    View it on <a href="https://github.com/brodeynewman/finance-tracker" target="_blank">GitHub</a>
-               </p>
-          </div>
-    </header>
-    <div class="page-wrap">
-      <div class="container">
-        <div class="app-wrap">
-          <div class="wallet-creation-modal" id="walletCreate">
-               <div class="wallet-creation-form-wrap">
-                    <div class="close-box">
-                         <a id="closeCardForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+          <link href="https://fonts.googleapis.com/css?family=Khula:400,600" rel="stylesheet">
+          <link rel="stylesheet" href="css/main.css">
+     </head>
+     <body>
+          <header>
+               <div class="header-box">
+                    <h3>
+                         A creation by <a href="http://brodeynewman.com" target="_blank">Brodey Newman.</a>
+                    </h3>
+                    <p>
+                         View it on <a href="https://github.com/brodeynewman/finance-tracker" target="_blank">GitHub</a>
+                    </p>
+               </div>
+          </header>
+          <div class="page-wrap">
+               <div class="container">
+                    <div class="app-wrap">
+                         <div class="wallet-creation-modal" id="walletCreate"> <!-- Card Creation Modal -->
+                              <div class="wallet-creation-form-wrap">
+                                   <div class="close-box">
+                                        <a id="closeCardForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                   </div>
+                                   <form class="wallet-creation">
+                                        <label for="cardType">Card Type</label>
+                                        <select id="cardType" class="wallet-type-select">
+                                             <option value="Visa">Visa</option>
+                                             <option value="Mastercard">Mastercard</option>
+                                             <option value="Amex">Amex</option>
+                                        </select>
+                                        <label for="cardNumber">Card Number</label>
+                                             <input id="cardNumber" type="text" placeholder="1111-1111-1111-1111" maxlength="19"/>
+                                        <label for="cardDate">Card Date</label>
+                                             <input type="date" id="cardDate">
+                                        <label for="cardAmount">Card Amount</label>
+                                             <input id="cardAmount" type="text" placeholder="300"/>
+                                        <a id="cardSubmit" class="submit-btn">Submit</a>
+                                   </form>
+                              </div>
+                         </div>
+
+                         <div class="transaction-creation-modal" id="transactionCreate"> <!-- Transaction Creation Modal -->
+                              <div class="transaction-creation-form-wrap">
+                                   <div class="close-box">
+                                        <a id="closeTransactionForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                   </div>
+                                   <form class="transaction-creation">
+                                        <label for="transactionType">Transaction Type</label>
+                                             <select id="transactionType" class="wallet-type-select">
+                                                  <option value="true">Addition</option>
+                                                  <option value="false">Subtraction</option>
+                                             </select>
+                                        <label for="transactionName">Transaction Name</label>
+                                             <input id="transactionName" type="text" placeholder="PNC Bank"/>
+                                        <label for="transactionDate">Transaction Date</label>
+                                             <input type="date" id="transactionDate">
+                                        <label for="transactionAmount">Transaction Amount</label>
+                                             <input id="transactionAmount" type="text" placeholder="$300"/>
+                                        <label for="transactionDescription">Transaction Description</label>
+                                             <input type="type" id="transactionDescription" placeholder="Funds Deposited">
+                                        <a id="transactionSubmit" class="submit-btn">Submit</a>
+                                   </form>
+                              </div>
+                         </div>
+                         <div class="wallet-wrap">
+                              <div class="wallet-head-wrap">
+                                   <h3>
+                                        My Wallets <a id="addCard"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                   </h3>
+                              </div>
+                              <div class="wallet-content-wrap" id="wallet">
+
+                              </div>
+                         </div>
+                         <div class="transaction-wrap">
+                              <div class="transaction-head-wrap">
+                                        <div class="transaction-title-wrap">
+                                             <h3>
+                                                  Current Balance
+                                             </h3>
+                                        </div>
+                                   <div class="transaction-balance-wrap">
+                                        <span id="balance">
+
+                                        </span>
+                                   </div>
+                              </div>
+                              <div class="transaction-list-wrap" id="transactList">
+                                   <div class="add-transaction-wrap">
+                                        <a id="addTransaction" onClick={wallet.openTransactionModal()}><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                   </div>
+                              </div>
+                         </div>
                     </div>
-                    <form class="wallet-creation">
-                         <label for="cardType">Card Type</label>
-                              <select id="cardType" class="wallet-type-select">
-                                   <option value="Visa">Visa</option>
-                                   <option value="Mastercard">Mastercard</option>
-                                   <option value="Amex">Amex</option>
-                              </select>
-                         <label for="cardNumber">Card Number</label>
-                              <input id="cardNumber" type="text" placeholder="1111-1111-1111-1111" maxlength="19"/>
-                         <label for="cardDate">Card Date</label>
-                              <input type="date" id="cardDate">
-                         <label for="cardAmount">Card Amount</label>
-                              <input id="cardAmount" type="text" placeholder="300"/>
-                         <a id="cardSubmit" class="submit-btn">Submit</a>
-                    </form>
                </div>
           </div>
 
-          <div class="transaction-creation-modal" id="transactionCreate">
-               <div class="transaction-creation-form-wrap">
-                    <div class="close-box">
-                         <a id="closeTransactionForm"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-                    <form class="transaction-creation">
-                         <label for="transactionType">Transaction Type</label>
-                         <select id="transactionType" class="wallet-type-select">
-                              <option value="true">Addition</option>
-                              <option value="false">Subtraction</option>
-                         </select>
-                         <label for="transactionName">Transaction Name</label>
-                              <input id="transactionName" type="text" placeholder="PNC Bank"/>
-                         <label for="transactionDate">Transaction Date</label>
-                              <input type="date" id="transactionDate">
-                         <label for="transactionAmount">Transaction Amount</label>
-                              <input id="transactionAmount" type="text" placeholder="$300"/>
-                         <label for="transactionDescription">Transaction Description</label>
-                              <input type="type" id="transactionDescription" placeholder="Funds Deposited">
-                         <a id="transactionSubmit" class="submit-btn">Submit</a>
-                    </form>
-               </div>
-          </div>
-          <div class="wallet-wrap">
-            <div class="wallet-head-wrap">
-              <h3>
-                My Wallets <a id="addCard"><i class="fa fa-plus" aria-hidden="true"></i></a>
-              </h3>
-            </div>
-            <div class="wallet-content-wrap" id="wallet">
+          <script src="src/card.js"></script>
+          <script src="src/transaction.js"></script>
+          <script src="src/wallet.js"></script>
+          <script src="src/transactionTemplate.js"></script>
+          <script src="src/walletTemplate.js"></script>
+          <script src="src/app.js"></script>
 
-            </div>
-          </div>
-          <div class="transaction-wrap">
-            <div class="transaction-head-wrap">
-              <div class="transaction-title-wrap">
-                <h3>
-                  Current Balance
-                </h3>
-              </div>
-              <div class="transaction-balance-wrap">
-                <span id="balance">
-
-                </span>
-              </div>
-            </div>
-            <div class="transaction-list-wrap" id="transactList">
-               <div class="add-transaction-wrap">
-                    <a id="addTransaction" onClick={wallet.openTransactionModal()}><i class="fa fa-plus" aria-hidden="true"></i></a>
-               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="src/card.js"></script>
-    <script src="src/transaction.js"></script>
-    <script src="src/wallet.js"></script>
-    <script src="src/transactionTemplate.js"></script>
-    <script src="src/walletTemplate.js"></script>
-    <script src="src/app.js"></script>
-
-    <!-- Font awesome -->
-    <script src="https://use.fontawesome.com/ab9717ab5b.js"></script>
-  </body>
+          <!-- Font awesome -->
+          <script src="https://use.fontawesome.com/ab9717ab5b.js"></script>
+     </body>
 </html>
