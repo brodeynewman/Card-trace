@@ -9,7 +9,7 @@ body {
 
 .page-wrap {
      width: 100%;
-     height: 100vh;
+     height: auto;
      background-color: #FFCC66;
 }
 
@@ -49,13 +49,12 @@ header .header-box a {
 
 .container {
      max-width: 1000px;
-     height: 100vh;
      display: flex;
      overflow: auto;
      align-items: center;
      justify-content: center;
      margin: auto;
-     padding: 0 15px;
+     padding: 50px 15px;
 }
 
 .app-wrap {

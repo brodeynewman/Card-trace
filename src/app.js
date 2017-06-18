@@ -4,7 +4,7 @@ const wallet = new Wallet();
      let createCard = document.getElementById('walletCreate');
      let createTransaction = document.getElementById('transactionCreate');
      let cardArr = document.getElementsByClassName('card');
-     let re = /\d(\.\d{1,2})?/;
+     let re = /^-?\d*\.?\d*$/;
 
      document.getElementById('cardDate').value = '06/18/2017';
 
@@ -34,13 +34,13 @@ const wallet = new Wallet();
                if (amount.match(re) && number.match(re)) {
                     let card = new Card(type, number, newDate, Number(amount));
                     wallet.addCard(card);
+
+                    /** Close modal. */
+                    createCard.className = 'wallet-creation-modal';
                } else {
                     alert('Enter a valid amount!');
                }
           }
-
-          /** Close modal. */
-          createCard.className = 'wallet-creation-modal';
      });
 
      /**
@@ -68,9 +68,10 @@ const wallet = new Wallet();
           let transactionType = document.getElementById('transactionType').value;
           let transactionName = document.getElementById('transactionName').value;
           let transactionDate = document.getElementById('transactionDate').value;
-          let transactionAmount = document.getElementById('transactionAmount').value;
+          let transactionAmount = document.getElementById('transactionAmount').value.replace(/[!@#$%^&*]/g, "");
           let transactionDescription = document.getElementById('transactionDescription').value;
           let index = document.getElementsByClassName('selected-card')[0].getAttribute('data-target');
+          console.log(transactionAmount);
 
           let obj = {
                transactionType: transactionType,
@@ -88,13 +89,13 @@ const wallet = new Wallet();
           } else {
                if (transactionAmount.match(re)) {
                     wallet.pushTransaction(index, obj);
+
+                    /** Close modal. */
+                    createTransaction.className = 'transaction-creation-modal';
                } else {
                     alert('Enter a valid amount!');
                }
           }
-
-          /** Close modal. */
-          createTransaction.className = 'transaction-creation-modal';
      });
 
 })()
