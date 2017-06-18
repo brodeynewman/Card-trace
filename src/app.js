@@ -93,6 +93,7 @@ const wallet = new Wallet();
                }
           }
 
+          /** Close modal. */
           createTransaction.className = 'transaction-creation-modal';
      });
 
