@@ -7,6 +7,7 @@ var wallet = new Wallet();
      let cardArr = document.getElementsByClassName('card');
      let re = /^-?\d*\.?\d*$/;
      let cardRe = /^\d{4}-?\d{4}-?\d{4}-?\d{4}$/;
+     let dateRe = /^\d{2}\/\d{2}\/\d{4}$/;
 
      /**
      * Adds click listener to add card icon.
@@ -24,23 +25,28 @@ var wallet = new Wallet();
           let type = document.getElementById('cardType').value;
           let number = document.getElementById('cardNumber').value;
           let amount = document.getElementById('cardAmount').value;
-          let date = document.getElementById('cardDate').value.split('/');
-          let newDate = `${date[0]}/${date[1]}/${date[2]}`;
+          let date = document.getElementById('cardDate').value;
+          let dateSplit = date.split('/');
+          let newDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`;
+
+          function isGoodDate(dt){
+              var reGoodDate = /^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/;
+              return reGoodDate.test(dt);
+          }
 
           /** Basic form validation. */
-          if (number.length < 1 || newDate.includes('undefined')) {
-                alert('Error: Missing information.');
+          if (number.length < 1 || newDate.includes('undefined') || !isGoodDate(date)) {
+                alert('Error: Missing or poorly formatted information.');
            } else {
                 if (amount.match(re) && number.match(cardRe)) {
                      let hashed = number.replace(/.(?=.{4,}$)/g, '*');
-
                      let card = new Card(type, number, newDate, Number(amount), hashed);
                      wallet.addCard(card);
 
                     /** Close modal. */
                     createCard.className = 'wallet-creation-modal';
                 } else {
-                     alert('Enter a valid amount!');
+                     alert('Error: Enter a valid amount!');
                 }
            }
      });
@@ -95,7 +101,7 @@ var wallet = new Wallet();
                     /** Close modal. */
                     createTransaction.className = 'transaction-creation-modal';
                } else {
-                    alert('Enter a valid amount!');
+                    alert('Error: Enter a valid amount!');
                }
           }
      });
