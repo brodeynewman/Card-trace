@@ -12,9 +12,9 @@ function Card(cardType, cardNumber, expirationDate, amount, hashedNum) {
      let expire = expirationDate.split('/');
 
      /** The date for card / transaction comparison. */
-     let editedDate = new Date(expire[2],expire[0]-1,expire[1]);
+     let editedDate = new Date(expire[2],expire[0] - 1,expire[1]);
      let year = editedDate.toString().split(' ')[3];
-     let savedDate = `${editedDate.getMonth()}/${year}`;
+     let savedDate = `${editedDate.getMonth() + 1 }/${year}`;
 
      this.template = new TransactionTemplate();
      this.cardType = cardType;
