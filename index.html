@@ -19,7 +19,11 @@
                     </div>
                     <form class="wallet-creation">
                          <label for="cardType">Card Type</label>
-                              <input id="cardType" type="text" placeholder="Visa"/>
+                              <select id="cardType" class="wallet-type-select">
+                                   <option value="Visa">Visa</option>
+                                   <option value="Mastercard">Mastercard</option>
+                                   <option value="Amex">Amex</option>
+                              </select>
                          <label for="cardNumber">Card Number</label>
                               <input id="cardNumber" type="text" placeholder="****-****-****-****" maxlength="19"/>
                          <label for="cardDate">Card Date</label>

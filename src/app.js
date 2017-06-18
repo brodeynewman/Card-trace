@@ -1,37 +1,25 @@
 const wallet = new Wallet();
 
-// const brodeyTransactionThree = new Transaction(false, 'Apple Iphone 7, 18g GB', '16 June. 2017', 600, 'Electronics', Math.floor(Math.random() * 100000));
-// const brodeyTransactionTest = new Transaction(true, 'BlueTone Media', '17 June. 2017', 1000, 'Payment', Math.floor(Math.random() * 100000));
-// const brodeyTransactionTestTwo = new Transaction(false, 'BlueTone Media', '17 June. 2017', 600, 'Health Insurance', Math.floor(Math.random() * 100000));
-//
-//
-// brodeyWallet.addCard(brodeyVisa);
-// // brodeyWallet.addCard(brodeyMaster);
-// // brodeyWallet.addCard(brodeyAmex);
-// //
-// brodeyVisa.addTransaction(brodeyTransactionThree);
-// brodeyVisa.addTransaction(brodeyTransactionTest);
-// brodeyVisa.addTransaction(brodeyTransactionTestTwo);
-
-
-
-function pushTransaction(data, transaction) {
-     wallet.pushTransaction(data, transaction);
-}
-
 (function() {
      let createCard = document.getElementById('walletCreate');
      let createTransaction = document.getElementById('transactionCreate');
      let cardArr = document.getElementsByClassName('card');
+     let re = /\d(\.\d{1,2})?/;
 
      document.getElementById('cardDate').value = '06/18/2017';
 
+     /**
+     * Adds click listener to add card icon.
+     */
      document.getElementById('addCard').addEventListener('click', function() {
           if (!createCard.classList.contains('wallet-creation-modal--show')) {
                createCard.className += ' wallet-creation-modal--show';
           }
      });
 
+     /**
+     * Adds click handler to the submit button on the card modal.
+     */
      document.getElementById('cardSubmit').addEventListener('click', function(e) {
           let type = document.getElementById('cardType').value;
           let number = document.getElementById('cardNumber').value;
@@ -39,23 +27,43 @@ function pushTransaction(data, transaction) {
           let date = document.getElementById('cardDate').value.split('-');
           let newDate = `${date[1]}/${date[2]}/${date[0]}`;
 
-          let card = new Card(type, number, newDate, Number(amount));
-          wallet.addCard(card)
+          /** Basic form validation. */
+          if (number.length < 1 || newDate.includes('undefined')) {
+               alert('Error: Missing information.');
+          } else {
+               if (amount.match(re) && number.match(re)) {
+                    let card = new Card(type, number, newDate, Number(amount));
+                    wallet.addCard(card);
+               } else {
+                    alert('Enter a valid amount!');
+               }
+          }
+
+          /** Close modal. */
           createCard.className = 'wallet-creation-modal';
      });
 
+     /**
+     * Adds click handler to the 'close' button on the card creation modal.
+     */
      document.getElementById('closeCardForm').addEventListener('click', function() {
           if (createCard.classList.contains('wallet-creation-modal--show')) {
                createCard.className = ' wallet-creation-modal';
           }
      });
 
+     /**
+     * Adds click handler to the 'close' button on the transaction creation modal.
+     */
      document.getElementById('closeTransactionForm').addEventListener('click', function() {
           if (createTransaction.classList.contains('transaction-creation-modal--show')) {
                createTransaction.className = ' transaction-creation-modal';
           }
      });
 
+     /**
+     * Adds click handler to the 'submit' button on the transaction creation modal.
+     */
      document.getElementById('transactionSubmit').addEventListener('click', function(e) {
           let transactionType = document.getElementById('transactionType').value;
           let transactionName = document.getElementById('transactionName').value;
@@ -74,7 +82,16 @@ function pushTransaction(data, transaction) {
                transactionID: index
           }
 
-          wallet.pushTransaction(index, obj);
+          /** Basic form validation. */
+          if (transactionName === '' || transactionDate === '') {
+               alert('Error: Missing information.');
+          } else {
+               if (transactionAmount.match(re)) {
+                    wallet.pushTransaction(index, obj);
+               } else {
+                    alert('Enter a valid amount!');
+               }
+          }
 
           createTransaction.className = 'transaction-creation-modal';
      });

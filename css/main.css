@@ -3,23 +3,22 @@
 */
 
 body {
-  margin: 0;
-  padding: 0;
-
+     margin: 0;
+     padding: 0;
 }
 
 .page-wrap {
-  width: 100%;
-  height: 100vh;
-  background-color: #FFCC66;
+     width: 100%;
+     height: 100vh;
+     background-color: #FFCC66;
 }
 
 * {
-  font-family: 'Khula', sans-serif;
+     font-family: 'Khula', sans-serif;
 }
 
 .selected-card {
-  border: 3px solid #99A7D3;
+     border: 3px solid #99A7D3;
 }
 
 /**
@@ -27,25 +26,25 @@ body {
 */
 
 .container {
-  max-width: 1000px;
-  height: 100vh;
-  display: flex;
-  overflow: auto;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  padding: 0 15px;
+     max-width: 1000px;
+     height: 100vh;
+     display: flex;
+     overflow: auto;
+     align-items: center;
+     justify-content: center;
+     margin: auto;
+     padding: 0 15px;
 }
 
 .app-wrap {
      position: relative;
-  width: 750px;
-  background-color: #fcfcfc;
-  border-radius: 5px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.13);
-  min-height: 550px;
-  display: flex;
-  flex-wrap: wrap;
+     width: 750px;
+     background-color: #fcfcfc;
+     border-radius: 5px;
+     box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.13);
+     min-height: 550px;
+     display: flex;
+     flex-wrap: wrap;
 }
 
 /**
@@ -53,68 +52,68 @@ body {
 */
 
 .wallet-wrap {
-  flex: 1;
-  background-color: #F2F2F2;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  padding: 20px 35px 0 35px;
-  color: #828693;
-  height: 550px;
-  overflow-y: auto;
+     flex: 1;
+     background-color: #F2F2F2;
+     border-top-left-radius: 5px;
+     border-bottom-left-radius: 5px;
+     padding: 20px 35px 0 35px;
+     color: #828693;
+     height: 550px;
+     overflow-y: auto;
 }
 
 .wallet-head-wrap {
-  padding: 0px 10px 0px 0px;
-  padding-bottom: 10px;
+     padding: 0px 10px 0px 0px;
+     padding-bottom: 10px;
 }
 
 .wallet-head-wrap h3 {
-  position: relative;
-  font-weight: 100;
+     position: relative;
+     font-weight: 100;
 }
 
 .wallet-head-wrap h3 a {
-  position: absolute;
-  right: 0;
-  top: 3px;
-  cursor: pointer;
-  color: #C6CCE2;
+     position: absolute;
+     right: 0;
+     top: 3px;
+     cursor: pointer;
+     color: #C6CCE2;
 }
 
 .wallet-content-wrap {
-  height: 79%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+     height: 79%;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
 }
 
 .wallet-content-wrap .card {
      position: relative;
-  min-height: 100px;
-  max-width: 213px;
-  background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  padding: 13px 11px;
-  margin: 10px 0;
+     min-height: 100px;
+     max-width: 213px;
+     background-color: #fff;
+     border-radius: 3px;
+     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+     padding: 13px 11px;
+     margin: 10px 0;
 }
 
 .wallet-content-wrap .card .credit-card {
-  width: 40px;
-  height: 30px;
-  border-radius: 3px;
-  background-color: #48A0DC;
+     width: 40px;
+     height: 30px;
+     border-radius: 3px;
+     background-color: #48A0DC;
 }
 
 .wallet-content-wrap .card-number p {
-  letter-spacing: 1px;
-  margin-bottom: 0;
+     letter-spacing: 1px;
+     margin-bottom: 0;
 }
 
 .wallet-content-wrap .expiration-date p {
-  color: #d2d2d2;
-  margin: 3px 0 0 0;
-  font-size: 14px;
+     color: #d2d2d2;
+     margin: 3px 0 0 0;
+     font-size: 14px;
 }
 
 .wallet-content-wrap .card:hover .delete-card,
@@ -152,50 +151,51 @@ body {
 .toggle-selector a {
      cursor: pointer;
 }
+
 /**
 * Transaction Styling
 */
 
 .transaction-wrap {
-  flex: 2;
-  border-left: 1px solid #eee;
-  padding: 20px 35px 0px 35px;
-  height: 550px;
-  overflow-y: auto;
+     flex: 2;
+     border-left: 1px solid #eee;
+     padding: 20px 35px 0px 35px;
+     height: 550px;
+     overflow-y: auto;
 }
 
 .transaction-head-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px 35px 20px 35px;
-  border-bottom: 2px solid #f4f4f4;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
+     padding: 20px 35px 20px 35px;
+     border-bottom: 2px solid #f4f4f4;
 }
 
 .transaction-title-wrap {
-  flex-basis: 150px;
+     flex-basis: 150px;
 }
 
 .transaction-title-wrap h3 {
-  color: #828693;
-  font-weight: 100;
-  margin: 0;
-  padding-top: 3px;
+     color: #828693;
+     font-weight: 100;
+     margin: 0;
+     padding-top: 3px;
 }
 
 .transaction-balance-wrap {
-  flex-basis: 125px;
-  text-align: right;
+     flex-basis: 125px;
+     text-align: right;
 }
 
 .transaction-balance-wrap span {
-  color: #54575F;
-  font-weight: bold;
-  font-size: 25px;
+     color: #54575F;
+     font-weight: bold;
+     font-size: 25px;
 }
 
 .transaction-list-wrap {
-  padding-top: 25px;
+     padding-top: 25px;
      position: relative;
 }
 
@@ -212,58 +212,58 @@ body {
 }
 
 .transaction-item-wrap {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+     display: flex;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+     margin-bottom: 20px;
 }
 
 .transaction-subtracting {
-  height: 15px;
-  width: 18px;
-  padding-top: 10px;
+     height: 15px;
+     width: 18px;
+     padding-top: 10px;
 }
 
 .transaction-subtracting span i {
-  padding-left: 0px;
-  color: #ddd;
-  border: 1px solid #ddd;
-  border-radius: 100%;
-  font-size: 10px;
-  padding: 2px 3px;
-  color: #828693;
+     padding-left: 0px;
+     color: #ddd;
+     border: 1px solid #ddd;
+     border-radius: 100%;
+     font-size: 10px;
+     padding: 2px 3px;
+     color: #828693;
 }
 
 .transaction-title {
-  padding-left: 15px;
-  flex-basis: 250px;
+     padding-left: 15px;
+     flex-basis: 250px;
 }
 
 .transaction-title p {
-  color: #54575F;
-  font-weight: bold;
-  margin: 0;
+     color: #54575F;
+     font-weight: bold;
+     margin: 0;
 }
 
 .transaction-title span {
-  color: #bdbdbd;
-  font-size: 13px;
+     color: #bdbdbd;
+     font-size: 13px;
 }
 
 .transaction-cost {
-  padding-top: 10px;
-  text-align: right;
-  flex-basis: 85px;
+     padding-top: 10px;
+     text-align: right;
+     flex-basis: 85px;
 }
 
 .minus span {
-  color: #A1ADD6;
-  font-weight: bold;
+     color: #A1ADD6;
+     font-weight: bold;
 }
 
 .plus span {
-  color: #7CD256;
-  font-weight: bold;
+     color: #7CD256;
+     font-weight: bold;
 }
 
 /**
@@ -422,4 +422,94 @@ body {
      color: #C6CCE2;
      cursor: pointer;
      font-size: 20px;
+}
+
+/**
+* Media Queries
+*/
+
+@media screen and (max-width: 747px) {
+     /**
+     * Page Media Queries
+     */
+
+     .container,
+     .page-wrap {
+          height: auto;
+     }
+
+     .page-wrap {
+          min-height: 1000px;
+     }
+
+     .container {
+          padding: 50px 15px;
+     }
+
+     /**
+     * Wallet Media Queries
+     */
+
+     .wallet-content-wrap {
+          height: auto;
+          display: block;
+     }
+
+     .wallet-content-wrap .card {
+          margin: 10px auto;
+     }
+
+     .transaction-wrap,
+     .wallet-wrap {
+          flex: initial;
+          width: 100%;
+     }
+
+     .wallet-wrap {
+          height: 300px;
+     }
+
+     /**
+     * Transaction Media Queries
+     */
+
+     .transaction-wrap {
+          height: auto;
+     }
+
+     .transaction-head-wrap {
+          display: block;
+          text-align: center;
+     }
+
+     .transaction-item-wrap {
+          text-align: center;
+     }
+
+     .transaction-title-wrap {
+          width: 100%;
+     }
+
+     .transaction-balance-wrap {
+          width: 100%;
+          text-align: center;
+     }
+
+     .transaction-title {
+          padding-left: 0px;
+          width: 100%;
+          flex-basis: initial;
+     }
+
+     .transaction-cost,
+     .transaction-title {
+          text-align: center;
+          width: 100%;
+          flex-basis: initial;
+     }
+
+     .transaction-subtracting {
+          width: 100%;
+          margin-bottom: 15px;
+     }
 }

@@ -30,8 +30,17 @@ Wallet.prototype.deleteCard = function(index) {
      this.removeNode(index);
 }
 
+/**
+* Clears the balance amount.
+*/
 Wallet.prototype.clearBalanceNode = function() {
      document.getElementById('balance').innerHTML = '';
+}
+
+/**
+* Clears the transaction list.
+*/
+Wallet.prototype.clearTransactionList = function() {
      let classes = document.getElementsByClassName('transaction-item-wrap');
 
      for (let i = 0; i < classes.length; i++) {
@@ -39,6 +48,11 @@ Wallet.prototype.clearBalanceNode = function() {
      }
 }
 
+/**
+* Removes the node with the matching data-target [index].
+* Clears the balance and strips the selected classes when a card is removed.
+* @param {number} index - Removes the node at the given index.
+*/
 Wallet.prototype.removeNode = function(index) {
      let elements = document.querySelectorAll('[data-target="' + index + '"]');
 
@@ -50,8 +64,12 @@ Wallet.prototype.removeNode = function(index) {
      this.stripClasses();
 }
 
+/**
+* Adds the selected class to the first node in the nodeList on card click.
+* Calls methods to clear list and balance when the 'selected-card' class is removed.
+* @param {element} node - Pulls the data-target from the node to pass down to other methods.
+*/
 Wallet.prototype.addSelected = function(node) {
-
      let index = node.getAttribute('data-target');
      let elements = document.querySelectorAll('[data-target="' + index + '"]');
 
@@ -65,9 +83,14 @@ Wallet.prototype.addSelected = function(node) {
           elements[0].className = 'card';
 
           this.clearBalanceNode();
+          this.clearTransactionList();
      }
 }
 
+/**
+* Loops through the nodeList and compares the passed node with the others in the list.
+* @param {number} index - Used to hide all transactions that dont belong to the passed data-target [index].
+*/
 Wallet.prototype.hideTransactions = function(index) {
      let classes = document.getElementsByClassName('selected-card');
 
@@ -82,6 +105,10 @@ Wallet.prototype.hideTransactions = function(index) {
      }
 }
 
+/**
+* Loops through the nodeList and compares the passed node with the others in the list.
+* @param {element} node - Used to compare the selected card.
+*/
 Wallet.prototype.removeClasses = function(node) {
      let classes = document.getElementsByClassName('selected-card');
 
@@ -92,6 +119,9 @@ Wallet.prototype.removeClasses = function(node) {
      }
 }
 
+/**
+* Finds all of the elements, and removes the selected class from them.
+*/
 Wallet.prototype.stripClasses = function() {
      let classes = document.getElementsByClassName('selected-card');
 
@@ -100,6 +130,10 @@ Wallet.prototype.stripClasses = function() {
      }
 }
 
+/**
+* If there's a selected card, then you may open the transaction creator.
+* If not, then you must select a channel.
+*/
 Wallet.prototype.openTransactionModal = function() {
      let createTransaction = document.getElementById('transactionCreate');
      let elements = document.getElementsByClassName('selected-card');
@@ -111,12 +145,19 @@ Wallet.prototype.openTransactionModal = function() {
      }
 }
 
+/**
+* Tells the wallet template to map out the wallets
+* @param {number} index - Selects the card by the data attribute.
+* @param {object} transaction - Object sent to the card to store in transaction array.
+*/
 Wallet.prototype.pushTransaction = function(index, transaction) {
      this.cards[index].addTransaction(transaction);
 }
 
 /**
 * Tells the wallet template to map out the wallets
+* @param {card} card - Which card to send to the template engine.
+* @param {number} index - Which index to give to the card data-target attribute.
 */
 Wallet.prototype.mapCards = function(card, index) {
      this.$walletList.innerHTML += this.template.render([card], index);

@@ -14,7 +14,7 @@ function TransactionTemplate() {
                                       {{transactionName}}
                                  </p>
                                  <span>
-                                      {{transactionDescription}} #{{transactionCode}}- <span id="transactionDate">{{transactionDate}}</span>
+                                      {{transactionDescription}} #{{transactionCode}} - <span id="transactionDate">{{transactionDate}}</span>
                                  </span>
                            </div>
                            <div class="transaction-cost {{damage}}">
