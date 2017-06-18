@@ -25,16 +25,18 @@
       * Deducts 35 from your amount becase you overdrafted. Tehe.
       * Passes in a new overdraft object to be rendered by the template.
       */
-    Card.prototype.overDraft = function() {
+    Card.prototype.overDraft = function(id) {
          this.activeBalance -= 35;
 
-         this.$entryList.innerHTML += this.template.render([this.createOverdraftObject()]);
+         this.$entryList.innerHTML += this.template.render([this.createOverdraftObject(id)]);
     },
 
     Card.prototype.displayBalance = function() {
          let balanceNode = document.getElementById('balance');
 
-         balanceNode.innerHTML = `$${this.activeBalance}.00`;
+          console.log(this.cards);
+          balanceNode.innerHTML = `$${this.activeBalance}.00`;
+
     }
 
     /**
@@ -44,7 +46,15 @@
       */
       Card.prototype.changeBalance = function(transaction) {
           if (transaction) {
-               (this.getTransactionType(transaction)) ? this.add(transaction) : (transaction.amount > this.activeBalance) ? this.subtractOverdraft(transaction) : this.subtract(transaction);
+               if (this.getTransactionType(transaction) === 'true') {
+                    this.add(transaction);
+               } else {
+                    if (transaction.transactionAmount > this.activeBalance) {
+                         this.subtractOverdraft(transaction);
+                    } else {
+                         this.subtract(transaction);
+                    }
+               }
           }
     }
 
@@ -53,7 +63,7 @@
      * @param {object} transaction - Transaction object.
      */
      Card.prototype.add = function(transaction) {
-          this.activeBalance += transaction.amount;
+          this.activeBalance += transaction.transactionAmount;
      }
 
      /**
@@ -63,7 +73,7 @@
       */
      Card.prototype.subtractOverdraft = function(transaction) {
           this.subtract(transaction);
-          this.overDraft();
+          this.overDraft(transaction.transactionID);
      }
 
      /**
@@ -71,7 +81,7 @@
       * @param {object} transaction - Transaction object.
       */
      Card.prototype.subtract = function(transaction) {
-          this.activeBalance -= transaction.amount;
+          this.activeBalance -= transaction.transactionAmount;
      }
 
     /**
@@ -87,10 +97,10 @@
           } else {
                this.transactions.push(transaction);
 
-               console.log(transaction);
                this.changeBalance(transaction);
           }
 
+          this.displayBalance();
           this.$entryList.innerHTML += this.template.render([transaction]);
      }
 
@@ -105,22 +115,21 @@
      * Returns the type of transaction.
      */
      Card.prototype.getTransactionType = function(obj) {
-          console.log(obj);
-
           return obj.transactionType;
      }
 
      /**
      * Creates an overdraft object to be rendered when overdrafting.
      */
-     Card.prototype.createOverdraftObject = function() {
+     Card.prototype.createOverdraftObject = function(id) {
           let obj = {
                transactionType: false,
                transactionName: 'Overdraft Fee',
                transactionDate: new Date(),
-               amount: 35,
+               transactionAmount: 35,
                transactionDescription: 'Overdraft Fee',
-               code: Math.floor(Math.random() * 100000)
+               transactionCode: Math.floor(Math.random() * 100000),
+               transactionID: id
           }
 
           return obj;

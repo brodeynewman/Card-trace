@@ -10,11 +10,12 @@
 * @param {string} transactionDate - The description of the transaction.
 * @param {number} price - A transaction code.
 */
-function Transaction(type, transactionName, transactionDate, price, description, code) {
+function Transaction(type, transactionName, transactionDate, price, description, code, id) {
      this.transactionType = type;
      this.transactionName = transactionName;
      this.transactionDate = transactionDate;
      this.amount = price;
      this.transactionDescription = description;
      this.code = code;
+     this.transactionID = id;
 }

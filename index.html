@@ -21,7 +21,7 @@
                          <label for="cardType">Card Type</label>
                               <input id="cardType" type="text" placeholder="Visa"/>
                          <label for="cardNumber">Card Number</label>
-                              <input id="cardNumber" type="text" placeholder="****-****-****-****"/>
+                              <input id="cardNumber" type="text" placeholder="****-****-****-****" maxlength="19"/>
                          <label for="cardDate">Card Date</label>
                               <input type="date" id="cardDate">
                          <label for="cardAmount">Card Amount</label>
@@ -79,7 +79,7 @@
             </div>
             <div class="transaction-list-wrap" id="transactList">
                <div class="add-transaction-wrap">
-                    <a id="addTransaction"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    <a id="addTransaction" onClick={wallet.openTransactionModal()}><i class="fa fa-plus" aria-hidden="true"></i></a>
                </div>
             </div>
           </div>

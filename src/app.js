@@ -39,21 +39,14 @@ function pushTransaction(data, transaction) {
           let date = document.getElementById('cardDate').value.split('-');
           let newDate = `${date[1]}/${date[2]}/${date[0]}`;
 
-          let card = new Card(type, number, newDate, amount);
+          let card = new Card(type, number, newDate, Number(amount));
           wallet.addCard(card)
           createCard.className = 'wallet-creation-modal';
-
      });
 
      document.getElementById('closeCardForm').addEventListener('click', function() {
           if (createCard.classList.contains('wallet-creation-modal--show')) {
                createCard.className = ' wallet-creation-modal';
-          }
-     });
-
-     document.getElementById('addTransaction').addEventListener('click', function() {
-          if (createTransaction.classList.contains('transaction-creation-modal')) {
-               createTransaction.className += ' transaction-creation-modal--show';
           }
      });
 
@@ -75,12 +68,11 @@ function pushTransaction(data, transaction) {
                transactionType: transactionType,
                transactionName: transactionName,
                transactionDate: transactionDate,
-               transactionAmount: transactionAmount,
+               transactionAmount: Number(transactionAmount),
                transactionDescription: transactionDescription,
-               transactionCode: Math.floor(Math.random() * 100000)
+               transactionCode: Math.floor(Math.random() * 100000),
+               transactionID: index
           }
-
-          console.log(obj);
 
           wallet.pushTransaction(index, obj);
 

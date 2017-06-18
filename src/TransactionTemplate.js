@@ -5,7 +5,7 @@
 * @contstructor
 */
 function TransactionTemplate() {
-     this.template = `<div class="transaction-item-wrap">
+     this.template = `<div class="transaction-item-wrap" data-target={{id}}>
                            <div class="transaction-subtracting">
                                  <span><i class="fa fa-{{transactionType}}" aria-hidden="true"></i></span>
                            </div>
@@ -35,8 +35,8 @@ TransactionTemplate.prototype.render = function(arr) {
      let template = this.template;
 
      arr.map(obj => {
-          let type = (obj.transactionType) ? 'plus' : 'minus';
 
+          let type = (obj.transactionType === 'true') ? 'plus' : 'minus';
           template = template.replace('{{transactionType}}', type);
           template = template.replace('{{transactionName}}', obj.transactionName);
           template = template.replace('{{transactionDescription}}', obj.transactionDescription);
@@ -44,6 +44,7 @@ TransactionTemplate.prototype.render = function(arr) {
           template = template.replace('{{transactionDate}}', obj.transactionDate);
           template = template.replace('{{transactionCost}}', obj.transactionAmount);
           template = template.replace('{{damage}}', type);
+          template = template.replace('{{id}}', obj.transactionID);
 
           view += template;
      });

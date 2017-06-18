@@ -5,10 +5,13 @@
 * @contstructor
 */
 function WalletTemplate() {
-     this.template = `<div class="card" data-target={{index}} onClick={wallet.addSelected(this.getAttribute('data-target'))}>
+     this.template = `<div class="card" data-target={{index}}>
                          <a class="delete-card" onClick={wallet.deleteCard(this.parentNode.getAttribute('data-target'))}>
                               <i class="fa fa-trash-o" aria-hidden="true"></i>
                          </a>
+                         <div class="toggle-selector">
+                              <a onClick={wallet.addSelected(this.parentNode.parentNode)} id="toggleSelect" ><i class="fa fa-check" aria-hidden="true"></i></a>
+                         </div>
                          <div class="credit-card {{cardType}}">
 
                          </div>
