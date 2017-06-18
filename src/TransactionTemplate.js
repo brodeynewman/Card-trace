@@ -1,8 +1,7 @@
 'use strict';
 
 /**
-* Wallet contstructor holds array of cards
-* @contstructor
+* Template for transaction.
 */
 function TransactionTemplate() {
      this.template = `<div class="transaction-item-wrap" data-target={{id}}>

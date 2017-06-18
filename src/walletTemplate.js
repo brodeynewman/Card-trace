@@ -12,8 +12,8 @@ function WalletTemplate() {
                          <div class="toggle-selector">
                               <a onClick={wallet.addSelected(this.parentNode.parentNode)} id="toggleSelect" ><i class="fa fa-check" aria-hidden="true"></i></a>
                          </div>
-                         <div class="credit-card {{cardType}}">
-
+                         <div class="credit-card">
+                              <img src="img/{{cardType}}.png" />
                          </div>
                          <div class="card-number">
                               <p>
@@ -38,6 +38,7 @@ WalletTemplate.prototype.render = function(arr, id) {
      let template = this.template;
 
      arr.map(obj => {
+
           template = template.replace('{{index}}', id);
           template = template.replace('{{cardType}}', obj.cardType);
           template = template.replace('{{cardNumber}}', obj.cardNumber);

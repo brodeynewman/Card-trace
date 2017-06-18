@@ -37,6 +37,9 @@ Card.prototype.overDraft = function(id) {
      this.$entryList.innerHTML += this.template.render([this.createOverdraftObject(id)]);
 },
 
+/**
+* Displays the active balance for the card.
+*/
 Card.prototype.displayBalance = function() {
      let balanceNode = document.getElementById('balance');
 
@@ -44,8 +47,7 @@ Card.prototype.displayBalance = function() {
 }
 
 /**
-* Maps through the transaction array and changes the balance accordingly.
-* Stores Initial amount so each time a new transaction is made, it subtracts from inital state when mapping.
+* Weeds through the transaction and changes the balance accordingly.
 * @param {object} transaction - The transaction that was made in order to change the activeBalance state.
 */
 Card.prototype.changeBalance = function(transaction) {

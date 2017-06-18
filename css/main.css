@@ -13,6 +13,28 @@ body {
      background-color: #FFCC66;
 }
 
+header {
+     background-color: #FFCC66;
+     text-align: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 5px 0;
+}
+
+header .header-box h3,
+header .header-box p {
+     color: #333;
+     margin: 10px 0;
+}
+
+header .header-box a {
+     color: #fff;
+     padding-bottom: 0px;
+     text-decoration: none;
+     border-bottom: 1px dotted #fff;
+}
+
 * {
      font-family: 'Khula', sans-serif;
 }
@@ -179,8 +201,8 @@ body {
 .transaction-title-wrap h3 {
      color: #828693;
      font-weight: 100;
-     margin: 0;
      padding-top: 3px;
+     margin: 0 0 10px 0;
 }
 
 .transaction-balance-wrap {

@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+    <header>
+          <div class="header-box">
+               <h3>
+                    A creation by <a href="http://brodeynewman.com" target="_blank">Brodey Newman.</a>
+               </h3>
+               <p>
+                    View it on <a href="https://github.com/brodeynewman/finance-tracker" target="_blank">GitHub</a>
+               </p>
+          </div>
+    </header>
     <div class="page-wrap">
       <div class="container">
         <div class="app-wrap">
@@ -25,7 +35,7 @@
                                    <option value="Amex">Amex</option>
                               </select>
                          <label for="cardNumber">Card Number</label>
-                              <input id="cardNumber" type="text" placeholder="****-****-****-****" maxlength="19"/>
+                              <input id="cardNumber" type="text" placeholder="1111-1111-1111-1111" maxlength="19"/>
                          <label for="cardDate">Card Date</label>
                               <input type="date" id="cardDate">
                          <label for="cardAmount">Card Amount</label>
@@ -47,13 +57,13 @@
                               <option value="false">Subtraction</option>
                          </select>
                          <label for="transactionName">Transaction Name</label>
-                              <input id="transactionName" type="text" placeholder="BlueTone Media"/>
+                              <input id="transactionName" type="text" placeholder="PNC Bank"/>
                          <label for="transactionDate">Transaction Date</label>
                               <input type="date" id="transactionDate">
                          <label for="transactionAmount">Transaction Amount</label>
                               <input id="transactionAmount" type="text" placeholder="$300"/>
                          <label for="transactionDescription">Transaction Description</label>
-                              <input type="type" id="transactionDescription" placeholder="Salary Payment">
+                              <input type="type" id="transactionDescription" placeholder="Funds Deposited">
                          <a id="transactionSubmit" class="submit-btn">Submit</a>
                     </form>
                </div>
