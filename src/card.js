@@ -112,6 +112,7 @@ Card.prototype.getExpired = function() {
 
 /**
 * Returns the type of transaction.
+* @param {object} obj - Used to return transaction type.
 */
 Card.prototype.getTransactionType = function(obj) {
      return obj.transactionType;
@@ -119,6 +120,7 @@ Card.prototype.getTransactionType = function(obj) {
 
 /**
 * Creates an overdraft object to be rendered when overdrafting.
+* @param {number} -id Used to add a data-target to the overdraft.
 */
 Card.prototype.createOverdraftObject = function(id) {
      let date = new Date().toString().split(' ');
