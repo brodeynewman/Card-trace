@@ -1,108 +1,112 @@
-/** Had to use 'var' because of safari bug saying 'Can't create duplicate variable that shadows a global property'. */
-var wallet = new Wallet();
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Finance Tracker</title>
 
-(function() {
-     let createCard = document.getElementById('walletCreate');
-     let createTransaction = document.getElementById('transactionCreate');
-     let cardArr = document.getElementsByClassName('card');
-     let re = /^-?\d*\.?\d*$/;
-     let cardRe = /^\d{4}-?\d{4}-?\d{4}-?\d{4}$/;
-     let dateRe = /^\d{2}\/\d{2}\/\d{4}$/;
+          <link href="https://fonts.googleapis.com/css?family=Khula:400,600" rel="stylesheet">
+          <link rel="stylesheet" href="css/main.css">
+     </head>
+     <body>
+          <header>
+               <div class="header-box">
+                    <h3>
+                         A creation by <a href="http://brodeynewman.com" target="_blank">Brodey Newman.</a>
+                    </h3>
+                    <p>
+                         View it on <a href="https://github.com/brodeynewman/finance-tracker" target="_blank">GitHub</a>
+                    </p>
+               </div>
+          </header>
+          <div class="page-wrap">
+               <div class="container">
+                    <div class="app-wrap">
+                         <div class="wallet-creation-modal" id="walletCreate"> <!-- Card Creation Modal -->
+                              <div class="wallet-creation-form-wrap">
+                                   <div class="close-box">
+                                        <a id="closeCardForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                   </div>
+                                   <form class="wallet-creation" id="walletCreateForm">
+                                        <label for="cardType">Card Type</label>
+                                        <select id="cardType" class="wallet-type-select">
+                                             <option value="Visa">Visa</option>
+                                             <option value="Mastercard">Mastercard</option>
+                                             <option value="Amex">Amex</option>
+                                        </select>
+                                        <label for="cardNumber">Card Number</label>
+                                             <input id="cardNumber" type="text" placeholder="1234-2345-3456-4567" maxlength="19"/>
+                                        <label for="cardDate">Card Date</label>
+                                             <input type="text" id="cardDate" placeholder="06/18/2017">
+                                        <label for="cardAmount">Card Amount</label>
+                                             <input id="cardAmount" type="text" placeholder="300"/>
+                                        <a id="cardSubmit" class="submit-btn">Submit</a>
+                                   </form>
+                              </div>
+                         </div>
 
-     /**
-     * Adds click listener to add card icon.
-     */
-     document.getElementById('addCard').addEventListener('click', function() {
-          if (!createCard.classList.contains('wallet-creation-modal--show')) {
-               createCard.className += ' wallet-creation-modal--show';
-          }
-     });
+                         <div class="transaction-creation-modal" id="transactionCreate"> <!-- Transaction Creation Modal -->
+                              <div class="transaction-creation-form-wrap">
+                                   <div class="close-box">
+                                        <a id="closeTransactionForm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                   </div>
+                                   <form class="transaction-creation" id="transactionCreationForm">
+                                        <label for="transactionType">Transaction Type</label>
+                                             <select id="transactionType" class="wallet-type-select">
+                                                  <option value="true">Deposit</option>
+                                                  <option value="false">Debit</option>
+                                             </select>
+                                        <label for="transactionName">Transaction Name</label>
+                                             <input id="transactionName" type="text" placeholder="PNC Bank"/>
+                                        <label for="transactionAmount">Transaction Amount</label>
+                                             <input id="transactionAmount" type="text" placeholder="$300"/>
+                                        <label for="transactionDescription">Transaction Description</label>
+                                             <input type="type" id="transactionDescription" placeholder="Funds Deposited">
+                                        <a id="transactionSubmit" class="submit-btn">Submit</a>
+                                   </form>
+                              </div>
+                         </div>
+                         <div class="wallet-wrap">
+                              <div class="wallet-head-wrap">
+                                   <h3>
+                                        My Wallets <a id="addCard"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                   </h3>
+                              </div>
+                              <div class="wallet-content-wrap" id="wallet">
 
-     /**
-     * Adds click handler to the submit button on the card modal.
-     */
-     document.getElementById('cardSubmit').addEventListener('click', function(e) {
-          let type = document.getElementById('cardType').value;
-          let number = document.getElementById('cardNumber').value;
-          let amount = document.getElementById('cardAmount').value;
-          let date = document.getElementById('cardDate').value;
-          let dateSplit = date.split('/');
-          let newDate = `${dateSplit[0]}/${dateSplit[1]}/${dateSplit[2]}`;
+                              </div>
+                         </div>
+                         <div class="transaction-wrap">
+                              <div class="transaction-head-wrap">
+                                        <div class="transaction-title-wrap">
+                                             <h3>
+                                                  Current Balance
+                                             </h3>
+                                        </div>
+                                   <div class="transaction-balance-wrap">
+                                        <span id="balance">
 
-          function isGoodDate(dt){
-              var reGoodDate = /^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/;
-              return reGoodDate.test(dt);
-          }
+                                        </span>
+                                   </div>
+                              </div>
+                              <div class="transaction-list-wrap" id="transactList">
+                                   <div class="add-transaction-wrap">
+                                        <a id="addTransaction" onClick={wallet.openTransactionModal()}><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
 
-          /** Basic form validation. */
-          if (number.length < 1 || newDate.includes('undefined') || !isGoodDate(date)) {
-                alert('Error: Missing or poorly formatted information.');
-           } else {
-                if (amount.match(re) && number.match(cardRe)) {
-                     let hashed = number.replace(/.(?=.{4,}$)/g, '*');
-                     let card = new Card(type, number, newDate, Number(amount), hashed);
-                     wallet.addCard(card);
+          <script src="src/card.js"></script>
+          <script src="src/transaction.js"></script>
+          <script src="src/wallet.js"></script>
+          <script src="src/transactionTemplate.js"></script>
+          <script src="src/walletTemplate.js"></script>
+          <script src="src/app.js"></script>
 
-                    /** Close modal. */
-                    createCard.className = 'wallet-creation-modal';
-                } else {
-                     alert('Error: Enter a valid amount!');
-                }
-           }
-     });
-
-     /**
-     * Adds click handler to the 'close' button on the card creation modal.
-     */
-     document.getElementById('closeCardForm').addEventListener('click', function() {
-          if (createCard.classList.contains('wallet-creation-modal--show')) {
-               createCard.className = ' wallet-creation-modal';
-          }
-     });
-
-     /**
-     * Adds click handler to the 'close' button on the transaction creation modal.
-     */
-     document.getElementById('closeTransactionForm').addEventListener('click', function() {
-          if (createTransaction.classList.contains('transaction-creation-modal--show')) {
-               createTransaction.className = ' transaction-creation-modal';
-          }
-     });
-
-     /**
-     * Adds click handler to the 'submit' button on the transaction creation modal.
-     */
-     document.getElementById('transactionSubmit').addEventListener('click', function(e) {
-          let transactionType = document.getElementById('transactionType').value;
-          let transactionName = document.getElementById('transactionName').value;
-          let transactionDate = new Date().toString().split(' ');
-          let transactionAmount = document.getElementById('transactionAmount').value.replace(/[!@#$%^&*]/g, "");
-          let transactionDescription = document.getElementById('transactionDescription').value;
-          let index = document.getElementsByClassName('selected-card')[0].getAttribute('data-target');
-          let preferredDate = `${transactionDate[1]} ${transactionDate[2]} ${transactionDate[3]}`
-
-          let obj = {
-               transactionType: transactionType,
-               transactionName: transactionName,
-               transactionDate: preferredDate,
-               transactionAmount: Number(transactionAmount),
-               transactionDescription: transactionDescription,
-               transactionCode: Math.floor(Math.random() * 100000),
-               transactionID: index
-          }
-
-          /** Basic form validation. */
-          if (transactionName === '') {
-               alert('Error: Missing information.');
-          } else {
-               if (transactionAmount.match(re)) {
-                    wallet.pushTransaction(index, obj);
-
-                    /** Close modal. */
-                    createTransaction.className = 'transaction-creation-modal';
-               } else {
-                    alert('Error: Enter a valid amount!');
-               }
-          }
-     });
-})()
+          <!-- Font awesome -->
+          <script src="https://use.fontawesome.com/ab9717ab5b.js"></script>
+     </body>
+</html>
